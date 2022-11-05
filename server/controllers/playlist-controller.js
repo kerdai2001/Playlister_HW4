@@ -46,10 +46,10 @@ createPlaylist = (req, res) => {
     })
 }
 deletePlaylist = async (req, res) => {
-    console.log("delete Playlist with id: " + JSON.stringify(req.params.id));
-    console.log("delete " + req.params.id);
+    //console.log("delete Playlist with id: " + JSON.stringify(req.params.id));
+    //console.log("delete " + req.params.id);
     Playlist.findById({ _id: req.params.id }, (err, playlist) => {
-        console.log("playlist found: " + JSON.stringify(playlist));
+        //console.log("playlist found: " + JSON.stringify(playlist));
         if (err) {
             return res.status(404).json({
                 errorMessage: 'Playlist not found!',
@@ -63,8 +63,13 @@ deletePlaylist = async (req, res) => {
                 console.log("req.userId: " + req.userId);
                 if (user._id == req.userId) {
                     console.log("correct user!");
+
+                    user.playlists.splice(user.playlists.indexOf(req.params.id), 1);
+
                     Playlist.findOneAndDelete({ _id: req.params.id }, () => {
-                        return res.status(200).json({});
+                        return res.status(200).json({
+                            success: true
+                        });
                     }).catch(err => console.log(err))
                 }
                 else {

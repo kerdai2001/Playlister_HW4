@@ -258,6 +258,7 @@ function GlobalStoreContextProvider(props) {
             payload: {}
         });
         tps.clearAllTransactions();
+        history.push("/");
     }
 
     // THIS FUNCTION CREATES A NEW LIST
@@ -313,6 +314,7 @@ function GlobalStoreContextProvider(props) {
                     type: GlobalStoreActionType.MARK_LIST_FOR_DELETION,
                     payload: {id: id, playlist: playlist}
                 });
+
             }
         }
         getListToDelete(id);
@@ -331,6 +333,7 @@ function GlobalStoreContextProvider(props) {
         store.deleteList(store.listIdMarkedForDeletion);
         store.hideModals();
     }
+
     // THIS FUNCTION SHOWS THE MODAL FOR PROMPTING THE USER
     // TO SEE IF THEY REALLY WANT TO DELETE THE LIST
 
