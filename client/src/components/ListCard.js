@@ -45,6 +45,7 @@ function ListCard(props) {
             store.setIsListNameEditActive();
         }
         setEditActive(newActive);
+        setText(idNamePair.name);
     }
 
     async function handleDeleteList(event, id) {
