@@ -529,6 +529,24 @@ function GlobalStoreContextProvider(props) {
         });
     }
 
+    store.clearTransactions = function () {
+        tps.clearAllTransactions();
+    }
+
+    function KeyPress(event) {
+        if(event.ctrlKey && !store.modalOpen)
+        {
+            if(event.key === 'z' && store.canUndo) {
+                store.undo();
+            }
+            else if(event.key === 'y' && store.canRedo) {
+                store.redo();
+            }
+        }
+    }
+
+    document.onkeydown = (e) => KeyPress(e);
+
     return (
         <GlobalStoreContext.Provider value={{
             store
