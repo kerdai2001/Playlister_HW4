@@ -364,6 +364,12 @@ function GlobalStoreContextProvider(props) {
     store.isRemoveSongModalOpen = () => {
         return store.currentModal === CurrentModal.REMOVE_SONG;
     }
+    store.getErrorMessage = () => {
+        return auth.error;
+    }
+    store.closeError = () => {
+        auth.closeError();
+    }
 
     // THE FOLLOWING 8 FUNCTIONS ARE FOR COORDINATING THE UPDATING
     // OF A LIST, WHICH INCLUDES DEALING WITH THE TRANSACTION STACK. THE
